@@ -1,0 +1,41 @@
+    {
+    "manifest_version": 2,
+    "name": "Focus",
+    "version": "0.0.1",
+    "author": "Aleksander 'olfucius' Wielgorski",
+    "icons": {},
+    "description": "Stay focused on one thing, without any distractions.",
+  
+    "permissions": [
+        "tabs",
+        "notifications",
+        "windows",
+        "storage"
+    ],
+
+    "browser_action": {
+        "default_popup": "index.html"
+    },
+
+    "commands": {
+        "_execute_browser_action": {
+          "suggested_key": {
+            "default": "Ctrl+Shift+F",
+            "mac": "MacCtrl+Shift+F"
+          },
+          "description": "Toggles focus mode"
+        }
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["*://*/*"],
+            "js": [
+                "clearAllTabs.js",
+                "handleFocusButtonClick.js"
+            ],
+            "match_about_blank": true,
+            "run_at": "document_start"
+        }
+    ]
+  }
